@@ -18,13 +18,33 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 
 <h2>List of Prerequisites</h2>
 
-- Item 1
-- Item 2
-- Item 3
-- Item 4
-- Item 5
+- Azure Virtual Machine: Windows 10, 4 vCPUs.
+- osTicket Installation Files: Download and extract.
+- Software Requirements:
+- Internet Information Services (IIS) with CGI enabled.
+  - PHP Manager and Rewrite Module. 
+  - PHP 7.3.8 configured in C:\PHP. 
+  - VC Redist and MySQL 5.5.62. 
+  - HeidiSQL for database management.
 
 <h2>Installation Steps</h2>
+
+1. Set Up VM
+2. Enable IIS
+3. Install Dependencies:
+   - PHP Manager, Rewrite Module, VC Redist, MySQL 5.5.62.
+   - Configure PHP in C:\PHP.
+4. Prepare osTicket Files
+5. Configure PHP Extensions
+6. Set Up Database
+7. Complete Installation
+
+
+
+
+
+
+
 
 <p>
 <img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
