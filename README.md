@@ -48,7 +48,7 @@ This tutorial outlines the prerequisites and installation of the open-source hel
 />
 </p>
 <p>
-I’m creating a Windows 10 VM in Azure, naming it osticket-vm, and configuring it with 4 vCPUs. This will act as a dedicated environment for installing osTicket without interfering with my local machine. Once the VM is ready, I log in using Remote Desktop to start the setup process.</p>
+I created a Windows 10 VM in Azure named osticket-vm, configured it with 4 vCPUs, and logged in using Remote Desktop. This provided a clean, isolated environment for installing and configuring osTicket.
 <br />
 
 <h2>2. Enable IIS(Internet Information Services)</h2>
@@ -58,7 +58,7 @@ I’m creating a Windows 10 VM in Azure, naming it osticket-vm, and configuring 
 />
 </p>
 <p>
-On the VM, I’m enabling IIS with the CGI option. This step is necessary because IIS serves as the web server that will host osTicket. I make sure the required application development features are checked so the server can process content.</p>
+On the VM, I enabled IIS with the CGI feature by going to Control Panel -> Programs -> Turn Windows Features On or Off and selecting the required options under "World Wide Web Services." IIS serves as the web server to host osTicket.
 <br />
 
 <h2>3. Install Dependencies</h2>
@@ -72,7 +72,7 @@ On the VM, I’m enabling IIS with the CGI option. This step is necessary becaus
 <img width="325" alt="php manager" src="https://github.com/user-attachments/assets/52c9b0a2-c2c0-4f89-bc4d-0b56b73cf7e4">
 </p>
 <p>
-I’m installing key components from the osTicket installation folder: PHP Manager, Rewrite Module, PHP 7.3.8, VC Redist, and MySQL. Each of these plays a critical role in supporting osTicket’s functionality—PHP runs the backend logic, MySQL handles the database, and other tools provide compatibility and extensions.</p>
+From the osTicket-Installation-Files folder, I installed PHP Manager, Rewrite Module, PHP 7.3.8, VC Redist, and MySQL 5.5. These components are critical for running osTicket's backend and managing its database.
 <br />
 
 <h2>4. Configure IIS for PHP</h2>
@@ -81,7 +81,7 @@ I’m installing key components from the osTicket installation folder: PHP Manag
 <img width="550" alt="Register PHP file" src="https://github.com/user-attachments/assets/0172d6cb-f36a-465e-8e7e-946022b401c4">
 </p>
 <p>
-Using the PHP Manager in IIS, I register the PHP executable file (php-cgi.exe) so the server can handle PHP files. Afterward, I restart IIS to ensure the changes take effect and confirm the server is ready to process PHP-based applications like osTicket.</p>
+In IIS Manager, I registered PHP by using PHP Manager -> Register new PHP version and selecting C:\PHP\php-cgi.exe. I restarted IIS to ensure it could process PHP files needed for osTicket.
 <br />
 
 <h2>5. Prepare osTicket Files</h2>
@@ -91,7 +91,7 @@ Using the PHP Manager in IIS, I register the PHP executable file (php-cgi.exe) s
 
 </p>
 <p>
-I’m extracting the osTicket files, moving them into IIS’s root directory (C:\inetpub\wwwroot\osTicket), and renaming the folder appropriately. Then, I reload IIS to apply the changes. This step essentially deploys the osTicket application so it’s ready to be accessed and configured.</p>
+I extracted the osTicket files from osTicket-v1.15.8.zip and moved the upload folder to C:\inetpub\wwwroot. After renaming the folder to osTicket, I restarted IIS to deploy the application.
 <br />
 
 <h2>6. Enable PHP Extensions</h2>
@@ -104,7 +104,7 @@ I’m extracting the osTicket files, moving them into IIS’s root directory (C:
 
 </p>
 <p>
-I’m enabling specific PHP extensions—php_imap.dll, php_intl.dll, and php_opcache.dll—using the PHP Manager in IIS. These extensions provide essential functionality like email handling, internationalization, and performance improvements, which are crucial for osTicket to operate effectively.</p>
+In IIS Manager, I used PHP Manager -> Enable or disable an extension to activate php_imap.dll, php_intl.dll, and php_opcache.dll. These extensions are necessary for email integration, internationalization, and performance optimization.
 <br />
 
 <h2>7. Set Up Database Configuration</h2>
@@ -113,10 +113,13 @@ I’m enabling specific PHP extensions—php_imap.dll, php_intl.dll, and php_opc
 <img width="325" alt="add odticket to database" src="https://github.com/user-attachments/assets/7bfa5f35-1915-438e-88ad-a84e8998b795">
 <img width="325" alt="osticket added to database" src="https://github.com/user-attachments/assets/d6e9db5a-8a7f-40ad-8a05-0114c362cfdc">
 <img width="325" alt="osticket security setting" src="https://github.com/user-attachments/assets/9156d94e-7ffc-48df-94b3-9d3e0a9da643">
+<img width="325" alt="Screen Shot 2024-12-09 at 11 58 06 PM" src="https://github.com/user-attachments/assets/46b1e78f-df28-49c7-93cd-dda41cb91510">
+
 
 </p>
 <p>
-I’m renaming the ost-sampleconfig.php file to ost-config.php and setting its permissions to allow full access for the system. Next, I open HeidiSQL to create a new database named osTicket, which will store all the application data. This step prepares the system for the final installation.</p>
+I renamed ost-sampleconfig.php to ost-config.php in the folder C:\inetpub\wwwroot\osTicket\include and updated the file permissions to grant full access by removing inheritance and adding new permissions for "Everyone."
+Using HeidiSQL, I connected to MySQL with the root credentials and created a new database named osTicket. This database stores all the data for the osTicket system.
 <br />
 
 <h2>8. Complete Installation</h2>
@@ -126,5 +129,6 @@ I’m renaming the ost-sampleconfig.php file to ost-config.php and setting its p
 <img width="500" alt="OsTicket Installed Congrats" src="https://github.com/user-attachments/assets/b6adf4c5-e227-4f3f-bbe6-ba6ea7f32df2">
 </p>
 <p>
-In the browser, I’m entering the database details (username and password) to connect osTicket to the database. Once I complete the setup process, osTicket is installed and fully operational, ready to manage help desk tickets effectively.</p>
+In the browser, I navigated to http://localhost/osTicket/scp/login.php to finalize the installation by providing database details and configuring basic help desk settings. This completed the installation and made osTicket operational.
+
 <br />
